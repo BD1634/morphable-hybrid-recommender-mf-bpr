@@ -1,0 +1,51 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Recsys Demo</title>
+    <style>
+      body { font-family: Arial, sans-serif; margin: 24px; }
+      .row { margin: 10px 0; }
+      label { display: inline-block; width: 120px; }
+      input, select { padding: 6px; }
+      button { padding: 8px 12px; cursor: pointer; }
+      .note { color: #555; font-size: 13px; }
+    </style>
+  </head>
+  <body>
+    <h2>Recommender Systems (Synthetic MF + BPR)</h2>
+    <p class="note">This is a lightweight, runnable demo for resume-style portfolio work.</p>
+
+    <form method="post" action="/recommend">
+      <div class="row">
+        <label for="user_id">User ID</label>
+        <input id="user_id" name="user_id" type="number" min="0" max="{{ max_user_id }}" value="{{ default_user_id }}" />
+      </div>
+
+      <div class="row">
+        <label for="k">Top-K</label>
+        <input id="k" name="k" type="number" min="1" max="{{ max_k }}" value="10" />
+      </div>
+
+      <div class="row">
+        <label for="mode">Mode</label>
+        <select id="mode" name="mode">
+          <option value="collab" selected>collab (relevance)</option>
+          <option value="content">content (text taste)</option>
+          <option value="diverse">diverse (less popularity)</option>
+          <option value="allow_repeats">allow repeats</option>
+        </select>
+      </div>
+
+      <div class="row">
+        <label for="request_text">Request</label>
+        <input id="request_text" name="request_text" type="text" placeholder="e.g. modern eco under 50, diverse" style="width: 320px;" />
+      </div>
+
+      <div class="row">
+        <button type="submit">Recommend</button>
+      </div>
+    </form>
+  </body>
+</html>
+

@@ -1,0 +1,45 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Recommendations</title>
+    <style>
+      body { font-family: Arial, sans-serif; margin: 24px; }
+      table { border-collapse: collapse; width: 100%; max-width: 800px; }
+      th, td { border: 1px solid #ddd; padding: 8px; }
+      th { background: #f5f5f5; }
+      .tag { font-size: 12px; color: #444; }
+    </style>
+  </head>
+  <body>
+    <h2>Top Recommendations</h2>
+    <p class="tag">user_id={{ user_id }}, mode={{ mode }}</p>
+    {% if request_text %}
+      <p class="tag">request: {{ request_text }}</p>
+    {% endif %}
+
+    <table>
+      <thead>
+        <tr>
+          <th>Item ID</th>
+          <th>Category</th>
+          <th>Price</th>
+          <th>Title</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for it in items %}
+          <tr>
+            <td>{{ it.item_id }}</td>
+            <td>{{ it.category_keyword }}</td>
+            <td>{{ "%.2f"|format(it.price) }}</td>
+            <td>{{ it.title }}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+
+    <p><a href="/">Back</a></p>
+  </body>
+</html>
+
